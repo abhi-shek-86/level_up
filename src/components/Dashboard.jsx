@@ -179,19 +179,14 @@ export default function Dashboard() {
       )}
 
       {!showSetup && currentDay && (
-        <div style={{ fontWeight: 'bold', margin: '1rem 0', display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            <span className="circle-count">
-              {/* Or use <BsCalendar2Date /> from react-icons/bs */}
-              {currentDay}
-            </span>
-            Days Remaining
+        <div className="center-info">
+          <span>
+            <span className="circle-count">{currentDay}</span>
+            Days
+
           </span>
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            <span className="circle-count streak-circle">
-              {/* Or use <FaFire /> from react-icons/fa */}
-              {streak}
-            </span>
+          <span>
+            <span className="circle-count streak-circle">{streak}</span>
             Streak
           </span>
         </div>

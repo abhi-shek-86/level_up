@@ -32,40 +32,42 @@ export default function Auth() {
   };
 
   return (
-    <div className="auth-form">
-      <h2>{isRegister ? 'Register' : 'Login'} to Level Up 🔥</h2>
-      {isRegister && (
+    <div className="auth-wrapper">
+      <div className="auth-form">
+        <h2>{isRegister ? 'Register' : 'Login'} to Level Up 🔥</h2>
+        {isRegister && (
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+        )}
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
         />
-      )}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <button onClick={handleAuth}>
-        {isRegister ? 'Register' : 'Login'}
-      </button>
-      <p>
-        {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
-        <span
-          style={{ color: 'blue', cursor: 'pointer' }}
-          onClick={() => setIsRegister(!isRegister)}
-        >
-          {isRegister ? 'Login here' : 'Register here'}
-        </span>
-      </p>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button onClick={handleAuth}>
+          {isRegister ? 'Register' : 'Login'}
+        </button>
+        <p>
+          {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
+          <span
+            style={{ color: 'blue', cursor: 'pointer' }}
+            onClick={() => setIsRegister(!isRegister)}
+          >
+            {isRegister ? 'Login here' : 'Register here'}
+          </span>
+        </p>
+      </div>
     </div>
   );
 }

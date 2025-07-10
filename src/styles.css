@@ -14,11 +14,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px; /* Base font size for mobile */
   line-height: 1.5;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f8fafc;
 }
 
 /* Main font for the app */
@@ -79,7 +74,7 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  background: #3b82f6;
+  background: #3b82f6; /* blue */
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -88,7 +83,7 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
 }
 
 .streak-circle {
-  background: #f59e0b;
+  background: #f59e0b; /* yellow/orange */
 }
 
 /* Tab controls - Mobile bottom navigation */
@@ -163,14 +158,15 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
 .auth-form {
   max-width: 400px;
   width: 90vw;
-  margin: 0 auto;
-  padding: 2rem 1.2rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 4vh auto;
+  padding: 2.5rem 1.2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(59,130,246,0.07), 0 1.5px 6px rgba(0,0,0,0.03);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .auth-form h2 {
@@ -214,7 +210,7 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
 
 @media (max-width: 500px) {
   .auth-form {
-    width: 90vw;
+    width: 95vw;
     min-width: 0;
     max-width: 98vw;
     padding: 1.2rem 0.5rem;
@@ -450,8 +446,8 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
 /* Streak box */
 .streak-box {
   text-align: center;
-  /* background: linear-gradient(135deg, #f59e0b, #d97706); */
-  color: rgb(6, 6, 6);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
   padding: 2rem;
   border-radius: 12px;
   margin: 1rem 0;
@@ -528,9 +524,43 @@ button[style*="float: right"] {
   vertical-align: middle;
 }
 
+/* Center info section */
+.center-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  margin: 2rem 0 1.5rem 0;
+  text-align: center;
+ flex-wrap: wrap;
+}
+
+.center-info span {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 1.2rem 2.2rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+@media (max-width: 600px) {
+  .center-info {
+    flex-direction: row;
+    gap: 1.2rem;
+    margin: 1.2rem 0 1rem 0;
+  }
+  .center-info span {
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
 /* Center dashboard and limit width on mobile */
 .dashboard {
- width: 90vw;
+ /* width: 90vw; */
   max-width: 430px;
   min-width: 260px;
   margin: 0 auto;
@@ -739,26 +769,24 @@ textarea:focus {
   letter-spacing: 0.5px;
 }
 
-/* Landing page styles */
 .landing-container {
   min-height: 100vh;
-  width: 90vw;           /* Use 90% of viewport width */
-       /* Limit max width for large screens */
-  margin: 0 auto;        /* Center horizontally */
+  width: 90vw;
+  max-width: 430px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f8fafc;
-  padding: 2rem 1rem;
-  box-sizing: border-box;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(59,130,246,0.07), 0 1.5px 6px rgba(0,0,0,0.03);
+  padding: 2.5rem 1.2rem;
   text-align: center;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(59,130,246,0.07);
 }
 
 .landing-title {
-  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   font-weight: 700;
   font-size: 2.2rem;
   color: #2563eb;
@@ -788,7 +816,22 @@ textarea:focus {
   background: #1d4ed8;
 }
 
+.auth-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+}
+
 @media (max-width: 600px) {
+  .landing-container {
+    width: 95vw;
+    max-width: 98vw;
+    padding: 1.5rem 0.5rem;
+    border-radius: 10px;
+  }
   .landing-title {
     font-size: 1.5rem;
   }
@@ -800,8 +843,5 @@ textarea:focus {
     width: 100%;
     font-size: 1rem;
     padding: 1rem 0;
-  }
-  .landing-container {
-    padding: 1.5rem 0.5rem;
   }
 }

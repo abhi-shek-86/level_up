@@ -113,9 +113,12 @@ export default function Dashboard() {
   const openSetup = (edit = false) => {
     setEditMode(edit);
     setTempDays(days);
-    setTempTasks([...tasks]);
+    setTempTasks(Array.isArray(tasks) ? [...tasks] : []);
     setShowSetup(true);
   };
+
+  // Helper: is this a new user?
+  const isNewUser = !days || days <= 0 || !tasks || tasks.length === 0;
 
   return (
     <div className="dashboard">
@@ -178,12 +181,12 @@ export default function Dashboard() {
         </div>
       )}
 
-      {!showSetup && currentDay && (
+      {/* Only show dashboard content if not a new user */}
+      {!showSetup && !isNewUser && currentDay && (
         <div className="center-info">
           <span>
             <span className="circle-count">{currentDay}</span>
             Days
-
           </span>
           <span>
             <span className="circle-count streak-circle">{streak}</span>
@@ -199,8 +202,8 @@ export default function Dashboard() {
               onClick={() => {
                 setActiveTab('tasks');
                 setEditMode(false);
-                setTasks(tasks || []); // <-- add this line
-                openSetup(false)
+                setTasks(tasks || []);
+                openSetup(false);
               }}
               className={activeTab === 'tasks' ? 'active' : ''}
             >
@@ -225,37 +228,49 @@ export default function Dashboard() {
               📊 Chart
             </button>
           </div>
-
           <div className="tab-content">
-            {activeTab === 'tasks' && currentDay && !showSetup && (
+            {/* Show suggestion for new users in tab content */}
+            {isNewUser ? (
+              <div className="welcome-suggestion">
+                <h3>👋 Welcome to Level Up!</h3>
+                <p>
+                  To get started, click <b>Tasks</b> below and set your challenge:
+                </p>
+                <ul>
+                  <li>Enter the <b>number of days</b> for your challenge</li>
+                  <li>Add your <b>study topics or tasks</b> (e.g., Python, SQL, Math...)</li>
+                  <li>Save to begin your learning journey!</li>
+                </ul>
+              </div>
+            ) : (
               <>
-                <button
-                  style={{ float: 'right', marginBottom: 10 }}
-                  onClick={() => openSetup(true)}
-                >
-                  Edit Tasks / Days
-                </button>
-                <DayCard
-                  day={currentDay}
-                  tasks={tasks}
-                  userId={user.uid}
-                  totalTasks={tasks.length}
-                  onStreakUpdate={setStreak}
-                />
-                
+                {activeTab === 'tasks' && currentDay && (
+                  <>
+                    <button
+                      style={{ float: 'right', marginBottom: 10 }}
+                      onClick={() => openSetup(true)}
+                    >
+                      Edit Tasks / Days
+                    </button>
+                    <DayCard
+                      day={currentDay}
+                      tasks={tasks}
+                      userId={user.uid}
+                      totalTasks={tasks.length}
+                      onStreakUpdate={setStreak}
+                    />
+                  </>
+                )}
+                {activeTab === 'streak' && (
+                  <StreakTracker userId={user.uid} totalDays={days} streak={streak} />
+                )}
+                {activeTab === 'history' && (
+                  <TaskHistory userId={user.uid} totalDays={days} />
+                )}
+                {activeTab === 'chart' && (
+                  <ProgressChart userId={user.uid} totalDays={days} />
+                )}
               </>
-            )}
-
-            {activeTab === 'streak' && (
-              <StreakTracker userId={user.uid} totalDays={days} streak={streak} />
-            )}
-
-            {activeTab === 'history' && (
-              <TaskHistory userId={user.uid} totalDays={days} />
-            )}
-
-            {activeTab === 'chart' && (
-              <ProgressChart userId={user.uid} totalDays={days} />
             )}
           </div>
         </>

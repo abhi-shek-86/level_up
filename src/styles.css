@@ -14,6 +14,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px; /* Base font size for mobile */
   line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
 }
 
 /* Main font for the app */
@@ -158,8 +163,8 @@ body, .dashboard, .auth-form, .tab-content, .day-card, .task-block, .streak-box,
 .auth-form {
   max-width: 400px;
   width: 90vw;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 0 auto;
+  padding: 2rem 1.2rem;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -732,4 +737,71 @@ textarea:focus {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
+}
+
+/* Landing page styles */
+.landing-container {
+  min-height: 100vh;
+  width: 90vw;           /* Use 90% of viewport width */
+  max-width: 430px;      /* Limit max width for large screens */
+  margin: 0 auto;        /* Center horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(59,130,246,0.07);
+}
+
+.landing-title {
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #2563eb;
+  margin-bottom: 1.2rem;
+}
+
+.landing-desc {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 2rem;
+  max-width: 420px;
+}
+
+.landing-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.landing-btn:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+  .landing-title {
+    font-size: 1.5rem;
+  }
+  .landing-desc {
+    font-size: 1rem;
+    max-width: 95vw;
+  }
+  .landing-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
+  .landing-container {
+    padding: 1.5rem 0.5rem;
+  }
 }
